@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vala Nirav | Professional Video Editor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Global Styles */
         * {
@@ -36,6 +37,17 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            height: 60px;
+            display: inline-block;
+            border-radius: 5px;
         }
         
         .top-nav ul {
@@ -449,6 +461,9 @@
 <body>
     <!-- Top Navigation Bar -->
     <nav class="top-nav">
+        <div class="logo-container">
+            <img src="unnamed.png" alt="Logo" class="logo">
+        </div>
         <ul>
             <li><a href="#" onclick="showPage('home')">Home</a></li>
             <li><a href="#" onclick="showPage('about')">About</a></li>
@@ -511,18 +526,19 @@
                     <div class="media-container">
                         <div class="video-player">
                             <h3>Showreel 2023</h3>
-                            <div class="video-thumbnail">
-                                <i class="fas fa-play-circle"></i>
-                            </div>
+                            <video controls>
+                                <source src="c.m4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                             <p>My latest showreel showcasing the best of my video editing projects from this year.</p>
                         </div>
                         
                         <div class="audio-player">
                             <h3>Client Testimonial</h3>
-                            <div style="background: #333; padding: 20px; border-radius: 5px; text-align: center;">
-                                <i class="fas fa-headphones" style="font-size: 2rem; margin-bottom: 10px; color: #ff4d4d;"></i>
-                                <p>Audio testimonial from satisfied client</p>
-                            </div>
+                            <video controls>
+                                <source src="radha.mp4" type="video/mp4">
+                                Your browser does not support the audio tag.
+                            </video>
                             <p>Listen to what my clients say about working with me on their projects.</p>
                         </div>
                     </div>
