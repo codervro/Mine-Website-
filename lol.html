@@ -5,465 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vala Nirav | Professional Video Editor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background-color: #0f0f0f;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Navigation Styles */
-        .top-nav {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        
-        .logo-container {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        
-        .logo {
-            height: 60px;
-            display: inline-block;
-            border-radius: 5px;
-        }
-        
-        .top-nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        .top-nav ul li {
-            margin: 0 15px;
-        }
-        
-        .top-nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        
-        .top-nav ul li a:hover {
-            background-color: rgba(255, 77, 77, 0.2);
-            color: #ff4d4d;
-        }
-        
-        .main-content {
-            display: flex;
-            margin-top: 20px;
-            min-height: calc(100vh - 200px);
-        }
-        
-        .left-nav {
-            width: 220px;
-            background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-right: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-        
-        .left-nav h3 {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
-            color: #ff4d4d;
-        }
-        
-        .left-nav ul {
-            list-style: none;
-        }
-        
-        .left-nav ul li {
-            margin-bottom: 10px;
-        }
-        
-        .left-nav ul li a {
-            color: #e0e0e0;
-            text-decoration: none;
-            display: block;
-            padding: 8px 10px;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        
-        .left-nav ul li a:hover {
-            background-color: rgba(255, 77, 77, 0.2);
-            color: #ff4d4d;
-        }
-        
-        .content {
-            flex: 1;
-            background-color: #1a1a1a;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-        
-        /* Page Content Styles */
-        h1, h2, h3 {
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            border-bottom: 2px solid #ff4d4d;
-            padding-bottom: 10px;
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            color: #ff4d4d;
-            margin-top: 25px;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-            color: #cccccc;
-        }
-        
-        /* List Styles */
-        .content ul, .content ol {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .content li {
-            margin-bottom: 8px;
-            color: #cccccc;
-        }
-        
-        /* Table Styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.3);
-        }
-        
-        table, th, td {
-            border: 1px solid #444;
-        }
-        
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-        }
-        
-        th {
-            background: linear-gradient(to right, #ff4d4d, #cc0000);
-            color: white;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #222222;
-        }
-        
-        tr:hover {
-            background-color: #2a2a2a;
-        }
-        
-        /* Form Styles */
-        form {
-            background-color: #222222;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #ffffff;
-        }
-        
-        input[type="text"],
-        input[type="email"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #444;
-            border-radius: 4px;
-            font-size: 1rem;
-            background-color: #333;
-            color: white;
-            transition: border 0.3s;
-        }
-        
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus,
-        select:focus {
-            border-color: #ff4d4d;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.2);
-        }
-        
-        button {
-            background: linear-gradient(to right, #ff4d4d, #cc0000);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        button:hover {
-            background: linear-gradient(to right, #cc0000, #a30000);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        
-        /* Media Styles */
-        .media-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .audio-player, .video-player {
-            flex: 1;
-            min-width: 300px;
-            background: #222222;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        audio, video {
-            width: 100%;
-            border-radius: 5px;
-        }
-        
-        /* Footer Styles */
-        footer {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            color: white;
-            text-align: center;
-            padding: 25px 0;
-            margin-top: 40px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            margin: 0 10px;
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: #ff4d4d;
-        }
-        
-        /* Page-specific styles */
-        .page {
-            display: none;
-        }
-        
-        .active {
-            display: block;
-        }
-        
-        .skills-table {
-            margin-top: 20px;
-        }
-        
-        .project-list {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-        
-        .project-list li {
-            margin-bottom: 15px;
-            padding-left: 5px;
-        }
-        
-        .profile-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
+        * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body {background-color:#0f0f0f;color:#fff;line-height:1.6;}
+        .container {width:90%;max-width:1200px;margin:0 auto;padding:20px;}
+        .top-nav {background:linear-gradient(135deg,#1a1a1a,#2d2d2d);color:white;padding:15px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.3);}
+        .top-nav ul {display:flex;justify-content:center;list-style:none;flex-wrap:wrap;}
+        .top-nav ul li {margin:0 15px;}
+        .top-nav ul li a {color:white;text-decoration:none;font-weight:500;padding:5px 10px;border-radius:4px;transition:all 0.3s;}
+        .top-nav ul li a:hover {background-color:rgba(255,77,77,0.2);color:#ff4d4d;}
+        .main-content {display:flex;margin-top:20px;min-height:calc(100vh - 200px);}
+        .left-nav {width:220px;background:linear-gradient(to bottom,#1a1a1a,#2d2d2d);color:white;padding:20px;border-radius:8px;margin-right:20px;box-shadow:0 4px 6px rgba(0,0,0,0.3);}
+        .left-nav h3 {margin-bottom:15px;border-bottom:1px solid #444;padding-bottom:10px;color:#ff4d4d;}
+        .left-nav ul {list-style:none;}
+        .left-nav ul li {margin-bottom:10px;}
+        .left-nav ul li a {color:#e0e0e0;text-decoration:none;display:block;padding:8px 10px;border-radius:4px;transition:all 0.3s;}
+        .left-nav ul li a:hover {background-color:rgba(255,77,77,0.2);color:#ff4d4d;}
+        .content {flex:1;background-color:#1a1a1a;padding:30px;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.3);}
+        h1,h2,h3 {color:#fff;margin-bottom:15px;}
+        h1 {font-size:2.2rem;border-bottom:2px solid #ff4d4d;padding-bottom:10px;}
+        h2 {font-size:1.8rem;color:#ff4d4d;margin-top:25px;}
+        p {margin-bottom:15px;font-size:1.05rem;color:#ccc;}
+        .content ul,.content ol {margin-left:20px;margin-bottom:20px;}
+        .content li {margin-bottom:8px;color:#ccc;}
+        table {width:100%;border-collapse:collapse;margin-bottom:20px;box-shadow:0 2px 3px rgba(0,0,0,0.3);}
+        table,th,td {border:1px solid #444;}
+        th,td {padding:12px 15px;text-align:left;}
+        th {background:linear-gradient(to right,#ff4d4d,#cc0000);color:white;}
+        tr:nth-child(even){background-color:#222;}
+        tr:hover{background-color:#2a2a2a;}
+        form {background-color:#222;padding:25px;border-radius:8px;margin-bottom:20px;box-shadow:0 2px 4px rgba(0,0,0,0.2);}
+        .form-group {margin-bottom:20px;}
+        label {display:block;margin-bottom:8px;font-weight:500;color:#fff;}
+        input[type="text"],input[type="email"],textarea,select {width:100%;padding:12px;border:1px solid #444;border-radius:4px;font-size:1rem;background-color:#333;color:white;transition:border 0.3s;}
+        input[type="text"]:focus,input[type="email"]:focus,textarea:focus,select:focus {border-color:#ff4d4d;outline:none;box-shadow:0 0 0 2px rgba(255,77,77,0.2);}
+        button {background:linear-gradient(to right,#ff4d4d,#cc0000);color:white;border:none;padding:12px 25px;border-radius:4px;cursor:pointer;font-size:1rem;font-weight:500;transition:all 0.3s;}
+        button:hover {background:linear-gradient(to right,#cc0000,#a30000);transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.3);}
+        .media-container {display:flex;flex-wrap:wrap;gap:20px;margin-bottom:20px;}
+        .audio-player,.video-player {flex:1;min-width:300px;background:#222;padding:15px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.2);}
+        audio,video {width:100%;border-radius:5px;}
+        footer {background:linear-gradient(135deg,#1a1a1a,#2d2d2d);color:white;text-align:center;padding:25px 0;margin-top:40px;}
+        .social-links {display:flex;justify-content:center;margin:15px 0;}
+        .social-links a {display:inline-block;margin:0 10px;color:white;font-size:1.5rem;transition:color 0.3s;}
+        .social-links a:hover {color:#ff4d4d;}
+        .page {display:none;}
+        .active {display:block;}
+        .skills-table {margin-top:20px;}
+        .project-list {list-style-type:square;margin-left:20px;}
+        .project-list li {margin-bottom:15px;padding-left:5px;}
+        .profile-header {display:flex;align-items:center;margin-bottom:30px;}
+        .profile-img {width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid #ff4d4d;margin-right:30px;background-color:#333;}
+        .profile-text h1 {border:none;margin-bottom:10px;}
+        .tagline {font-size:1.2rem;color:#ccc;font-style:italic;}
+        .highlight {background-color:#222;padding:20px;border-left:4px solid #ff4d4d;margin:20px 0;border-radius:0 4px 4px 0;}
+        .card {background:#222;border-radius:8px;padding:20px;margin-bottom:20px;box-shadow:0 2px 4px rgba(0,0,0,0.2);border-top:3px solid #ff4d4d;}
+        .service-item {display:flex;margin-bottom:15px;}
+        .service-icon {background:#ff4d4d;color:white;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:15px;flex-shrink:0;}
+        .video-gallery {display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin:20px 0;}
+        .video-item {background:#222;border-radius:8px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.3);transition:transform 0.3s;}
+        .video-item:hover {transform:translateY(-5px);}
+        .video-thumbnail {width:100%;height:180px;background:linear-gradient(45deg,#333,#555);display:flex;align-items:center;justify-content:center;color:#ff4d4d;font-size:3rem;}
+        .video-info {padding:15px;}
+        @media(max-width:768px){.main-content{flex-direction:column;}.left-nav{width:100%;margin-right:0;margin-bottom:20px;}.top-nav ul{justify-content:space-around;}.top-nav ul li{margin:5px;}.profile-header{flex-direction:column;text-align:center;}.profile-img{margin-right:0;margin-bottom:20px;}.video-gallery{grid-template-columns:1fr;}}
+   
         .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #ff4d4d;
-            margin-right: 30px;
-            background-color: #333;
-        }
-        
-        .profile-text h1 {
-            border: none;
-            margin-bottom: 10px;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            color: #cccccc;
-            font-style: italic;
-        }
-        
-        .highlight {
-            background-color: #222222;
-            padding: 20px;
-            border-left: 4px solid #ff4d4d;
-            margin: 20px 0;
-            border-radius: 0 4px 4px 0;
-        }
-        
-        .card {
-            background: #222222;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            border-top: 3px solid #ff4d4d;
-        }
-        
-        .service-item {
-            display: flex;
-            margin-bottom: 15px;
-        }
-        
-        .service-icon {
-            background: #ff4d4d;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .video-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .video-item {
-            background: #222222;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
-        }
-        
-        .video-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .video-thumbnail {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(45deg, #333, #555);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ff4d4d;
-            font-size: 3rem;
-        }
-        
-        .video-info {
-            padding: 15px;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .left-nav {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-            
-            .top-nav ul {
-                justify-content: space-around;
-            }
-            
-            .top-nav ul li {
-                margin: 5px;
-            }
-            
-            .profile-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .profile-img {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-            
-            .video-gallery {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden; /* Ensures image doesn't spill out */
+    margin-right: 30px;
+    border: 4px solid #ff4d4d;
+    background-color: #333;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes image fully cover the circle without stretching */
+}
+
+
+   
+   </style>
 </head>
 <body>
     <!-- Top Navigation Bar -->
     <nav class="top-nav">
-        <div class="logo-container">
-            <img src="unnamed.png" alt="Logo" class="logo">
-        </div>
         <ul>
             <li><a href="#" onclick="showPage('home')">Home</a></li>
             <li><a href="#" onclick="showPage('about')">About</a></li>
@@ -508,7 +136,7 @@
                 <section id="home" class="page active">
                     <div class="profile-header">
                         <div class="profile-img">
-                            <i class="fas fa-user" style="font-size: 4rem; line-height: 150px; text-align: center; width: 100%;"></i>
+                            <img src="unnamed.png" alt="Logo">
                         </div>
                         <div class="profile-text">
                             <h1>Vala Nirav</h1>
@@ -527,7 +155,7 @@
                         <div class="video-player">
                             <h3>Showreel 2023</h3>
                             <video controls>
-                                <source src="c.m4" type="video/mp4">
+                                <source src="c.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <p>My latest showreel showcasing the best of my video editing projects from this year.</p>
@@ -535,10 +163,10 @@
                         
                         <div class="audio-player">
                             <h3>Client Testimonial</h3>
-                            <video controls>
-                                <source src="radha.mp4" type="video/mp4">
-                                Your browser does not support the audio tag.
-                            </video>
+                            <audio controls>
+                                <source src="radha.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
                             <p>Listen to what my clients say about working with me on their projects.</p>
                         </div>
                     </div>
@@ -647,7 +275,6 @@
                             <td>Basic animation and effects</td>
                             <td>$100</td>
                             <td>3-4 days</td>
-                        </tr>
                     </table>
                 </section>
 
@@ -659,9 +286,10 @@
                     <h2>Video Gallery</h2>
                     <div class="video-gallery">
                         <div class="video-item">
-                            <div class="video-thumbnail">
-                                <i class="fas fa-play-circle"></i>
-                            </div>
+                            <video controls>
+                                <source src="t.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                             <div class="video-info">
                                 <h3>Travel Vlog</h3>
                                 <p>15-minute travel vlog with dynamic cuts and color grading</p>
@@ -669,9 +297,10 @@
                         </div>
                         
                         <div class="video-item">
-                            <div class="video-thumbnail">
-                                <i class="fas fa-play-circle"></i>
-                            </div>
+                            <video controls>
+                                <source src="c.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                             <div class="video-info">
                                 <h3>Product Launch</h3>
                                 <p>60-second social media ad for tech product</p>
@@ -679,9 +308,10 @@
                         </div>
                         
                         <div class="video-item">
-                            <div class="video-thumbnail">
-                                <i class="fas fa-play-circle"></i>
-                            </div>
+                            <video controls>
+                                <source src="berlin.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                             <div class="video-info">
                                 <h3>Music Video</h3>
                                 <p>3-minute music video with creative transitions</p>
@@ -689,9 +319,10 @@
                         </div>
                         
                         <div class="video-item">
-                            <div class="video-thumbnail">
-                                <i class="fas fa-play-circle"></i>
-                            </div>
+                            <video controls>
+                                <source src="berlin.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                             <div class="video-info">
                                 <h3>Corporate Training</h3>
                                 <p>20-minute training video with graphics</p>
@@ -823,8 +454,8 @@
                     <h2>Contact Information</h2>
                     <ul>
                         <li><strong>Email:</strong> valanirav7068@gmail.com</li>
-                        <li><strong>YouTube:</strong> <a href="https://youtube.com/@edit._.by_nv?si=zqL47lip9tHXrwi9" target="_blank" style="color: #ff4d4d;">@edit._.by_nv</a></li>
-                        <li><strong>Instagram:</strong> <a href="https://www.instagram.com/_edityouneed/" target="_blank" style="color: #ff4d4d;">@_edityouneed</a></li>
+                        <li><strong>YouTube:</strong> <a href="https://youtube.com/@edit._.by_nv?si=zqL47lip9tHXrwi9" target="_blank" style="color:#ff4d4d;">@edit._.by_nv</a></li>
+                        <li><strong>Instagram:</strong> <a href="https://www.instagram.com/_edityouneed/" target="_blank" style="color:#ff4d4d;">@_edityouneed</a></li>
                         <li><strong>Availability:</strong> Accepting new projects</li>
                     </ul>
                 </section>
@@ -846,24 +477,16 @@
     </footer>
 
     <script>
-        // Function to show the selected page and hide others
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show the selected page
+        function showPage(pageId){
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
         }
-        
-        // Handle form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
+
+        document.getElementById('contact-form').addEventListener('submit', function(e){
             e.preventDefault();
             alert('Thank you for your inquiry! I will get back to you within 24 hours.');
             this.reset();
         });
     </script>
 </body>
-</html>
+</html> 
