@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Editbynv — Professional Video Editor</title>
+<style>
+/* --- Reset & base --- */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#060607 0%, #0b0b0d 60%);
+  color:#eee;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.35;
+  min-height:100vh;
+}
+
+/* --- Header / Nav --- */
+.header{
+  position:fixed;top:0;left:0;right:0;
+  height:72px;
+  display:flex;align-items:center;gap:18px;
+  padding:0 36px;
+  background:linear-gradient(180deg, rgba(5,5,6,0.65), rgba(10,10,12,0.45));
+  backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  z-index:40;
+}
+.brand{
+  display:flex;gap:12px;align-items:center;
+}
+.brand img{width:48px;height:48px;border-radius:10px;object-fit:cover;border:2px solid rgba(255,255,255,0.04)}
+.brand .title{
+  font-weight:800;font-size:20px;
+  background:linear-gradient(90deg,#ff3b3b,#ff8a55);
+  -webkit-background-clip:text;color:transparent;
+  letter-spacing:0.6px;
+}
+.nav{
+  margin-left:auto;display:flex;gap:28px;align-items:center;
+}
+.nav a{
+  color:#cfcfcf;text-decoration:none;font-weight:600;font-size:13px;
+  position:relative;padding:6px 0;
+  transition: color .22s ease;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.nav a:hover{color:#fff}
+.nav a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-8px;height:3px;
+  background:linear-gradient(90deg,#ff3b3b,#ff8a55);
+  transform:scaleX(0);transform-origin:left center;border-radius:4px;
+  transition:transform .32s cubic-bezier(.2,.9,.3,1);
+}
+.nav a:hover::after{transform:scaleX(1)}
+
+/* --- Hero --- */
+.hero{
+  padding-top:110px;padding-bottom:36px;
+  text-align:center;max-width:1100px;margin:0 auto;
+}
+.h1{
+  font-size:48px;font-weight:800;line-height:1.02;
+}
+.h1 .accent{
+  background:linear-gradient(90deg,#ff3b3b,#ff8a55);
+  -webkit-background-clip:text;color:transparent;
+}
+.sub{
+  margin-top:12px;color:#d0cfd3;max-width:760px;margin-left:auto;margin-right:auto;font-size:17px;
+  opacity:0.95;
+}
+
+/* subtle floating underline animation when hover over hero texts */
+.hero .h1:hover{transform:translateY(-2px);transition:transform .4s ease}
+
+/* --- Experience badge --- */
+.exp-badge{
+  margin:18px auto 36px;
+  display:inline-block;padding:10px 22px;border-radius:999px;
+  background:linear-gradient(90deg, rgba(255,59,59,0.14), rgba(255,138,85,0.12));
+  color:#ffd7cf;font-weight:700;border:1px solid rgba(255,255,255,0.03);
+  box-shadow:0 8px 30px rgba(255,59,59,0.04);
+}
+
+/* --- Projects gallery (Reels) --- */
+.projects{
+  max-width:1200px;margin:28px auto;padding:10px 22px 46px;display:flex;flex-direction:column;gap:18px;
+}
+.projects .label{font-weight:700;font-size:22px;margin-left:6px;color:#fff}
+.reel-grid{
+  margin-top:12px;display:flex;gap:18px;flex-wrap:wrap;justify-content:center;
+}
+
+/* each reel is portrait ratio -- 9:16 look (approx.) */
+.reel{
+  width:230px;height:410px;border-radius:16px;overflow:hidden;position:relative;
+  background:#100f11;border:1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 10px 30px rgba(6,6,6,0.6);
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+  cursor:pointer;
+}
+.reel:hover{ transform: translateY(-8px) scale(1.04); box-shadow:0 22px 48px rgba(255,59,59,0.06); border-color: rgba(255,59,59,0.12) }
+.reel video{
+  width:100%;height:100%;object-fit:cover;display:block; background:#000;
+}
+/* overlay title */
+.reel .meta{
+  position:absolute;left:12px;bottom:12px;padding:8px 11px;border-radius:10px;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6));
+  color:#fff;font-weight:700;font-size:13px;backdrop-filter: blur(2px);
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* small play icon top-left on hover */
+.reel .play-pulse{
+  position:absolute;top:12px;left:12px;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(90deg,#ff3b3b,#ff8a55);box-shadow:0 6px 22px rgba(255,59,59,0.12);opacity:0;transform:translateY(-6px);
+  transition:opacity .28s, transform .28s;
+}
+.reel:hover .play-pulse{opacity:1;transform:translateY(0)}
+.play-pulse svg{width:16px;height:16px;color:white;}
+
+/* --- Achievements grid --- */
+.ach-section{max-width:1100px;margin:26px auto;padding:28px 22px 46px}
+.ach-title{font-weight:800;font-size:24px;margin-bottom:10px}
+.ach-grid{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.ach-card{
+  width:260px;background:linear-gradient(180deg,#0d0d0f,#131315);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);
+  transition:transform .28s,box-shadow .28s;border-left:6px solid rgba(255,59,59,0.06);
+}
+.ach-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(6,6,6,0.6);border-left-color:rgba(255,59,59,0.7)}
+.ach-card h3{color:#ffbdb0;margin-bottom:8px;font-size:16px}
+.ach-card p{color:#d3cfcf;font-size:14px;opacity:0.95}
+
+/* --- Quote Rotator (footer area) --- */
+.quote-wrap{max-width:1100px;margin:36px auto;text-align:center;padding:20px 22px}
+.quote{
+  font-style:italic;font-weight:600;font-size:19px;padding:16px;border-radius:12px;display:inline-block;
+  min-height:60px;line-height:1.3;padding-left:28px;padding-right:28px;
+  background:linear-gradient(90deg, rgba(255,59,59,0.06), rgba(0,0,0,0.04));
+  border:1px solid rgba(255,255,255,0.02);
+  color:#ffdede;
+  position:relative;
+  overflow:hidden;
+}
+
+/* rotating three quotes with pure CSS */
+.rotator{position:relative;width:560px;height:60px;margin:0 auto}
+.rotator p{position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;opacity:0;transform:translateY(8px);
+  animation:rot 12s linear infinite;
+  color: #ffecec; font-size:18px; font-weight:600;
+}
+/* offsets */
+.rotator p:nth-child(1){animation-delay:0s}
+.rotator p:nth-child(2){animation-delay:4s}
+.rotator p:nth-child(3){animation-delay:8s}
+
+/* color shift */
+.rotator p span{display:inline-block;padding:0 6px;border-radius:6px;animation:clr 6s linear infinite}
+
+/* animations */
+@keyframes rot{
+  0%{opacity:0;transform:translateY(8px)}
+  6%{opacity:1;transform:translateY(0)}
+  30%{opacity:1;transform:translateY(0)}
+  36%{opacity:0;transform:translateY(-8px)}
+  100%{opacity:0}
+}
+@keyframes clr{
+  0%{color:#ffdede;text-shadow:0 0 6px rgba(255,59,59,0.1)}
+  25%{color:#ffe7c7;text-shadow:0 0 8px rgba(255,140,85,0.12)}
+  50%{color:#ffdede;text-shadow:0 0 6px rgba(255,59,59,0.08)}
+  75%{color:#ffe7c7}
+  100%{color:#ffdede}
+}
+
+/* --- Social icons block --- */
+.socials{max-width:900px;margin:26px auto;padding:22px;text-align:center}
+.socials .row{display:flex;gap:26px;justify-content:center;align-items:center}
+.socials a{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:12px;background:#0d0d0f;border:1px solid rgba(255,255,255,0.02);transition:transform .22s, box-shadow .22s}
+.socials a:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(255,59,59,0.06)}
+.socials img{width:28px;height:28px;display:block}
+
+/* --- Footer --- */
+.footer{padding:26px;text-align:center;border-top:1px solid rgba(255,255,255,0.02);color:#cfcfcf;font-size:13px}
+.footer small{display:block;margin-top:8px;opacity:0.75}
+
+/* --- Responsive --- */
+@media (max-width:900px){
+  .reel{width:44vw;height:78vw}
+  .rotator{width:92vw}
+  .h1{font-size:34px}
+  .nav{display:none}
+  .header{padding:12px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="brand">
+    <img src="unnamed.png" alt="logo">
+    <div class="title">𝙀𝙙𝙞𝙩𝙗𝙮𝙣𝙫</div>
+  </div>
+
+  <nav class="nav">
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<main id="home" class="hero">
+  <div class="h1">Professional <span class="accent">Video Editor</span></div>
+  <div class="sub">Crafting cinematic stories for films, webseries and YouTube — I translate vision into emotion through edit, color & sound.</div>
+  <div class="exp-badge">8+ Years Experience • Film & Creator Work</div>
+</main>
+
+<!-- Projects / Reels -->
+<section id="projects" class="projects">
+  <div class="label">Featured Reels</div>
+
+  <div class="reel-grid">
+    <!-- Project 1: Millie.mp4 (you provided) -->
+    <div class="reel" title="Millie — Project 1">
+      <div class="play-pulse" aria-hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 3v18l15-9z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <video src="Millie.mp4" poster="thumb1.jpg" muted loop playsinline preload="metadata"></video>
+      <div class="meta">Millie</div>
+    </div>
+
+    <!-- Project 2 placeholder -->
+    <div class="reel" title="Project 2 — Steve Harrington">
+      <div class="play-pulse" aria-hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 3v18l15-9z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <video src="old.mp4" poster="thumb2.jpg" muted loop playsinline preload="metadata"></video>
+      <div class="meta">𝐒𝐭𝐞𝐯𝐞 𝐇𝐚𝐫𝐫𝐢𝐧𝐠𝐭𝐨𝐧</div>
+    </div>
+
+    <!-- Project 3 placeholder -->
+    <div class="reel" title="Project 3 — YT Highlights">
+      <div class="play-pulse" aria-hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 3v18l15-9z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <video src="NANCY.mp4" poster="thumb3.jpg" muted loop playsinline preload="metadata"></video>
+      <div class="meta">Nancy <3</div>
+    </div>
+
+    <!-- Project 4 placeholder -->
+    <div class="reel" title="Project 4 — Webseries Edit">
+      <div class="play-pulse" aria-hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 3v18l15-9z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <video src="wlwmax.mp4" poster="thumb4.jpg" muted loop playsinline preload="metadata"></video>
+      <div class="meta">#elmax </div>
+    </div>
+  </div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements" class="ach-section">
+  <div class="ach-title">Achievements & Capabilities</div>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <h3>Films & Webseries</h3>
+      <p>Full post-production and episodic workflows for fiction and short films — editorial, VFX supervision and final delivery.</p>
+    </div>
+
+    <div class="ach-card">
+      <h3>Creators & YouTube</h3>
+      <p>Channel branding, fast pace viral edits, thumbnails & narrative sequencing that drive watch time and engagement.</p>
+    </div>
+
+    <div class="ach-card">
+      <h3>Cinematic Craft</h3>
+      <p>Expert color grading, sound design & motion compositing — I focus on mood, pacing and emotional beats.</p>
+    </div>
+
+    <div class="ach-card">
+      <h3>Results</h3>
+      <p>Projects reaching millions of views — professional delivery, fast turnaround and collaborative revisions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Quote rotator -->
+<section class="quote-wrap">
+  <div class="quote rotator" aria-hidden>
+    <p><span>“If a viewer feels something… my job is done.”</span></p>
+    <p><span>“Editing is not just cutting clips — it’s carving emotions.”</span></p>
+    <p><span>“Not a video editor — I’m a memory architect.”</span></p>
+  </div>
+</section>
+
+<!-- Socials -->
+<section id="contact" class="socials">
+  <div class="row">
+    <!-- 1) YouTube -->
+    <a href="https://youtube.com/@edit._.by_nv?si=JkB-6AVay7dzsB_u" target="_blank" title="YouTube">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+    </a>
+
+    <!-- 2) Gmail -->
+    <a href="mailto:valanirav7068@gmail.com" title="Email">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
+    </a>
+
+    <!-- 3) Discord (placeholder link) -->
+    <a href="#" title="Discord">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord">
+    </a>
+
+    <!-- 4) Instagram (placeholder link) -->
+    <a href="#" title="Instagram">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div>© 2025 Editbynv | All Rights Reserved</div>
+  <small>Built & curated by Editbynv — cinematic edits & creative storytelling</small>
+</footer>
+
+<!-- --- Small JS for hover play/unmute --- -->
+<script>
+/* Hover play + unmute on mouseover, mute & pause on mouseout.
+   Uses playsinline for mobile compatibility; mobile behaviour may differ.
+*/
+document.querySelectorAll('.reel').forEach(function(reel){
+  var vid = reel.querySelector('video');
+  if(!vid) return;
+  // on hover (desktop)
+  reel.addEventListener('mouseenter', function(){
+    vid.muted = false;
+    // try to play; some browsers require user interaction first
+    vid.play().catch(()=>{ /* autoplay blocked; user must tap */ });
+  });
+  reel.addEventListener('mouseleave', function(){
+    vid.pause();
+    vid.muted = true;
+  });
+
+  // also pause when video ends (loop is set, but keep control)
+  vid.addEventListener('ended', function(){ vid.pause(); vid.currentTime = 0; });
+});
+</script>
+
+</body>
+</html>
