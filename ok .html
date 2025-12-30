@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mishri Amrutiya | Portfolio</title>
+
+<style>
+:root{
+  --primary:#7f5af0;
+  --secondary:#2cb67d;
+  --bg:#0f172a;
+  --card:rgba(255,255,255,0.12);
+  --glass:blur(18px);
+  --text:#e5e7eb;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  background:radial-gradient(circle at top, #1e293b, #020617);
+  color:var(--text);
+}
+
+/* ===== HEADER ===== */
+header{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px;
+}
+.hero{
+  background:var(--card);
+  backdrop-filter:var(--glass);
+  border-radius:30px;
+  padding:60px 40px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  animation:floatIn 1.2s ease;
+}
+@keyframes floatIn{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+.hero h1{
+  font-size:3rem;
+  margin-bottom:10px;
+}
+.hero p{
+  opacity:0.9;
+  font-size:1.1rem;
+}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;
+  top:50%;
+  right:20px;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  z-index:10;
+}
+nav a{
+  padding:10px 16px;
+  background:var(--card);
+  backdrop-filter:var(--glass);
+  color:white;
+  text-decoration:none;
+  border-radius:20px;
+  transition:0.4s;
+}
+nav a:hover{
+  background:var(--primary);
+  transform:translateX(-6px);
+}
+
+/* ===== SECTIONS ===== */
+section{
+  padding:100px 10%;
+}
+.card{
+  background:var(--card);
+  backdrop-filter:var(--glass);
+  border-radius:26px;
+  padding:40px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+  transform:translateY(40px);
+  opacity:0;
+  transition:1s;
+}
+.card.show{
+  transform:translateY(0);
+  opacity:1;
+}
+h2{
+  color:var(--secondary);
+  margin-top:0;
+}
+
+/* ===== IMAGE ===== */
+.profile-img{
+  width:180px;
+  border-radius:24px;
+  box-shadow:0 0 40px rgba(127,90,240,0.8);
+  transition:0.6s;
+}
+.profile-img:hover{
+  transform:scale(1.07) rotate(-1deg);
+}
+
+/* ===== TABLE ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
+}
+th,td{
+  padding:12px;
+  border-bottom:1px solid rgba(255,255,255,0.2);
+}
+th{
+  color:var(--secondary);
+}
+
+/* ===== AUDIO ===== */
+audio{
+  width:100%;
+  margin-top:15px;
+  filter:drop-shadow(0 0 10px #7f5af0);
+}
+
+/* ===== FORM ===== */
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+}
+button{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  border:none;
+  padding:12px 18px;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.4s;
+}
+button:hover{
+  transform:scale(1.05);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<header id="home">
+  <div class="hero">
+    <img src="k.jpeg" class="profile-img" alt="Profile Image">
+    <h1>✨ Mishri Amrutiya</h1>
+    <p>M.Sc. IT (Integrated) Student • LJ University • Ahmedabad</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <div class="card">
+    <h2>🙋 About Me</h2>
+    <p>
+      I am a passionate IT student currently pursuing M.Sc. IT (Integrated) from LJ University.
+      I love clean design, creativity, and learning modern technologies step by step.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="card">
+    <h2>💻 Skills</h2>
+    <table>
+      <tr><th>Skill</th><th>Level</th></tr>
+      <tr><td>HTML</td><td>Intermediate</td></tr>
+      <tr><td>CSS</td><td>Intermediate</td></tr>
+      <tr><td>Designing</td><td>Beginner</td></tr>
+      <tr><td>MS Office</td><td>Advanced</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="card">
+    <h2>📁 Projects</h2>
+    <ul>
+      <li>Personal Portfolio Website</li>
+      <li>C Programming Mini Projects</li>
+      <li>HTML & CSS Assignments</li>
+    </ul>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="card">
+    <h2>🎧 Gallery</h2>
+    <p>Local audio example:</p>
+    <audio controls>
+      <source src="running up that hill.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="card">
+    <h2>📞 Contact</h2>
+    <p>
+      📱 +91 99985 16710 <br>
+      ✉️ payalamrutiya4482@gmail.com
+    </p>
+    <form>
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea rows="4" placeholder="Message"></textarea>
+      <button>Send</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2025 ~Mishri Amrutiya | Crafted with passion 💜
+</footer>
+
+<script>
+/* Scroll reveal */
+const cards = document.querySelectorAll(".card");
+window.addEventListener("scroll", ()=>{
+  cards.forEach(card=>{
+    const top = card.getBoundingClientRect().top;
+    if(top < window.innerHeight - 120){
+      card.classList.add("show");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
