@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tirtha Brahmbhatt | Student Portfolio</title>
+
+<style>
+html{
+  scroll-behavior:smooth;
+}
+body{
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin:0;
+  background:#f4f7fb;
+  color:#222;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:white;
+  padding:30px 20px;
+  text-align:center;
+}
+header h1{
+  margin:0;
+  font-size:2.4rem;
+}
+header p{
+  margin-top:8px;
+  opacity:0.95;
+}
+
+/* NAVBAR */
+nav{
+  background:white;
+  width:190px;
+  position:fixed;
+  top:110px;
+  left:0;
+  height:100%;
+  box-shadow:2px 0 10px rgba(0,0,0,0.1);
+  padding-top:20px;
+}
+nav a{
+  display:block;
+  padding:10px 16px;
+  margin:6px 10px;
+  text-decoration:none;
+  color:#333;
+  border-radius:8px;
+  transition:0.3s;
+}
+nav a:hover, nav a.active{
+  background:#667eea;
+  color:white;
+}
+
+/* SECTIONS */
+section{
+  margin-left:220px;
+  padding:30px;
+}
+.card{
+  background:white;
+  padding:25px;
+  margin-bottom:30px;
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  animation:fadeUp 0.8s ease;
+}
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+h2{
+  color:#667eea;
+  margin-top:0;
+}
+
+/* IMAGE */
+img{
+  width:160px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  transition:0.4s;
+}
+img:hover{
+  transform:scale(1.05) rotate(-1deg);
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+}
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+th{
+  background:#eef2ff;
+}
+
+/* FORM */
+form input, form textarea{
+  width:100%;
+  padding:10px;
+  margin-bottom:12px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+form button{
+  background:#667eea;
+  color:white;
+  padding:10px 16px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+form button:hover{
+  background:#4f5bd5;
+}
+
+/* AUDIO */
+audio{
+  width:100%;
+  margin-top:12px;
+}
+
+/* FOOTER */
+footer{
+  background:#667eea;
+  color:white;
+  text-align:center;
+  padding:12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>✨ Meet Tirtha</h1>
+  <p>~Tirtha Brahmbhatt | M.Sc. IT (Integrated) Student at LJ University, Ahmedabad</p>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="home">
+  <div class="card">
+    <h2>🏠 Home</h2>
+    <p>Hello! I’m <b>Tirtha Brahmbhatt</b>, an IT student passionate about learning, creativity, and technology.</p>
+    <p>This portfolio is built using HTML, CSS, and a bit of JavaScript for better user experience.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="card">
+    <h2>🙋 About Me</h2>
+    <p>I am currently pursuing M.Sc. IT (Integrated) from LJ University, Ahmedabad.  
+    I enjoy improving my skills step by step and exploring modern web design.</p>
+    <ul>
+      <li><b>Name:</b> Tirtha Brahmbhatt</li>
+      <li><b>Course:</b> M.Sc. IT (Integrated)</li>
+      <li><b>College:</b> LJ University</li>
+      <li><b>Location:</b> Ahmedabad, Gujarat</li>
+    </ul>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="card">
+    <h2>💻 Skills</h2>
+    <ul>
+      <li>HTML & CSS</li>
+      <li>Creative Designing</li>
+      <li>Documentation & Presentation</li>
+      <li>MS Office</li>
+    </ul>
+
+    <table>
+      <tr><th>Skill</th><th>Level</th></tr>
+      <tr><td>HTML</td><td>Intermediate</td></tr>
+      <tr><td>CSS</td><td>Intermediate</td></tr>
+      <tr><td>Designing</td><td>Beginner</td></tr>
+      <tr><td>MS Office</td><td>Advanced</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="card">
+    <h2>📁 Projects</h2>
+    <ul>
+      <li>Student Portfolio Website</li>
+      <li>C Programming Mini Projects</li>
+      <li>HTML & CSS Assignments</li>
+    </ul>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="card">
+    <h2>🐱 Gallery</h2>
+    <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131" alt="Cute Cat">
+    <p>Local audio example (same folder):</p>
+
+    <audio controls>
+      <source src="running up that hill.mp3" type="audio/mpeg">
+      Your browser does not support audio.
+    </audio>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="card">
+    <h2>📞 Contact Me</h2>
+    <p><b>Phone:</b> +91 91060 49752<br>
+       <b>Email:</b> tirtha.brahmbhatt5047@gmail.com</p>
+
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2025 Tirtha Brahmbhatt | Student Portfolio
+</footer>
+
+<script>
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(sec => {
+    const top = window.scrollY;
+    const offset = sec.offsetTop - 150;
+    if(top >= offset){
+      current = sec.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(a => {
+    a.classList.remove("active");
+    if(a.getAttribute("href") === "#" + current){
+      a.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
